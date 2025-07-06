@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: fullstack-backend
+    runtime: node
+    plan: free
+    buildCommand: cd my-backend && npm install
+    startCommand: cd my-backend && node server.js
+    rootDir: my-backend
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+
+  - type: web
+    name: fullstack-frontend
+    runtime: node
+    plan: free
+    buildCommand: cd my-frontend && npm install && npm run build
+    startCommand: cd my-frontend && npm install -g serve && serve -s dist
+    rootDir: my-frontend
+    envVars:
+      - key: NODE_VERSION
+        value: 20
